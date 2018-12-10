@@ -1,0 +1,1919 @@
+   <!DOCTYPE html>
+   <html>
+   <head>
+	<meta charset="utf-8">
+	<!--
+
+    Open Presenter, version 0.5.2beta
+
+	History:
+	v.0.2.2beta
+	2014-06-06:
+				[Bug Fix] Added h1 heading to all slides.
+				'Adding new slide' example was improved.
+	v.0.2.1beta
+	2014-06-05: Added a page number related JavaScript function (setPageNumbers()).
+				Added CSS selector - p[name=page-num] to configure the page numbers.
+	            Changed a structure of h2 heading to include the page number.
+    See:
+    http://tympanus.net/codrops/2012/01/30/page-transitions-with-css3/
+	-->
+	<title>GreenLife Hospital Presentation</title>
+	<meta name="author" content="Vladimir Skvortsov">
+	<meta name="date" content="May 31, 2014">
+	<meta name="format" content="complete">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+	<style>
+
+		/* Reset CSS */
+		/*html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0
+		}*/
+		* {background-color: #B1DF95;
+/*
+		    -moz-box-sizing: border-box;
+		    -webkit-box-sizing: border-box;
+*/
+/*		    box-sizing: border-box;*/
+		    margin: 0;
+		    padding: 0;
+		    color: 	#0F083B;
+		}
+		html {
+
+            height: 650px;
+		    width: 940px;
+            margin: 0 auto;
+
+            padding: 1%;
+            z-index: -1;
+
+/*			height:100%;*/
+/*            background: #c72;*/
+/*            overflow: hidden;*/
+
+/*            margin: 20px;*/
+/*            margin-top: 20px;*/
+/*            top: 20px;*/
+
+			/*background: #c72111;*/  /* screen background */
+
+		}
+
+        html:target {
+			/*margin-top: 0%*/
+/*
+			background: yellow;
+			background-color: yellow;
+
+
+*/
+            border-color: red;
+		}
+
+		body	{
+
+/*            overflow: auto;*/
+            position: relative;
+            min-height: 100%;
+/*			height:100%;*/
+			/*display: inline;*/
+			/*display: table;*/
+
+            margin: 0 auto;
+            border: 2px solid green;
+
+/*            z-index: auto;*/
+
+/*            background-color: #eee;*/
+				background-color: #857DB1;
+
+		}
+
+        body:target {
+			/*margin-top: 0%*/
+/*			background: yellow;*/
+/*			background-color: transparent;*/
+
+/*            z-index: 1;*/
+
+/*            border-color: magenta;*/
+
+			/* Safari 4 does not support an inset shadow */
+/*		 -webkit-box-shadow:       25px 25px 25px rgba(0,0,0,0);*/
+		 /* Chrome 5 does, Safari 4 will ignore this declaration */
+/*
+		 -webkit-box-shadow: inset 25px 25px 25px rgba(0,0,0,0);
+		    -moz-box-shadow: inset 25px 25px 25px rgba(0,0,0,0);
+		         box-shadow: inset 25px 25px 25px rgba(0,0,0,0);
+*/
+		}
+
+		body div .slide {
+
+
+
+            height: 0px;
+
+            z-index: 400;
+
+/*            display: block;*/
+
+/*
+            overflow-y: auto;
+	        overflow-x: hidden;
+*/
+
+/*            margin-top: -150%; */
+            position: absolute;
+
+/*            z-index: 300;*/
+
+/*
+            -webkit-transition: all 5s ease-in-out;
+	       -moz-transition: all 2s ease-in-out;
+	       -o-transition: all 2s ease-in-out;
+	       transition: all 2s ease-in-out;
+*/
+
+/*            background: #000;*/
+/*            box-shadow: 0px 4px 7px rgba(0,0,0,0.6);*/
+
+
+/*            background-color: #eee;*/
+
+			/*position: relative; 	*/
+/*			position: absolute;	*/
+
+            /* slides main background */
+/*			background-color: #eee; */
+			/*top: 60%;*/
+
+/*			display: none;*/
+
+			/*display:table;*/
+			overflow:hidden;
+
+			/*overflow:visible;*/
+/*			margin: 0px auto;*/
+			/*margin:90px;*/
+			/*margin-top: 10%;*/
+			/*padding: 5px;*/
+
+/*			height: 660px; */
+
+
+
+			/*vertical-align: middle;	*/
+
+/*			border: 4px solid green; */
+            /* SLIDE BORDER */
+
+/*
+		 -webkit-border-radius: 12px;
+		    -moz-border-radius: 12px;
+		         border-radius: 12px;
+*/
+		 /* Safari 4 does not support an inset shadow */
+/*		 -webkit-box-shadow:       5px 5px 25px rgba(0,0,0,.5);*/
+		 /* Chrome 5 does, Safari 4 will ignore this declaration */
+/*
+		 -webkit-box-shadow: inset 5px 5px 25px rgba(0,0,0,.5);
+		    -moz-box-shadow: inset 5px 5px 25px rgba(0,0,0,.5);
+		         box-shadow: inset 5px 5px 25px rgba(0,0,0,.5);
+*/
+
+/*		    z-index: 2;*/
+
+/*
+		    -webkit-transition: all .8s ease-in-out;
+    		-moz-transition: all .8s ease-in-out;
+    		-o-transition: all .8s ease-in-out;
+    		transition: all .8s ease-in-out;
+*/
+
+    		/*margin-top: -150%;*/
+
+/*
+    		-webkit-transition: -webkit-transform 1s;
+		    -moz-transition: -moz-transform 1s;
+		    -o-transition: -o-transform 1s;
+		    transition: transform 1s;
+*/
+
+/*
+		    -webkit-transform-style: preserve-3d;
+		    -moz-transform-style: preserve-3d;
+		    -o-transform-style: preserve-3d;
+		    transform-style: preserve-3d;
+*/
+
+/*
+            opacity:0;
+            transition:opacity 10s linear;
+
+            transition: all 1s ease;
+
+
+*/
+             transition:all 2s ease;
+
+            -webkit-transition: 1s;
+            -moz-transition: 1s;
+            -ms-transition: 1s;
+            -o-transition: 1s;
+            transition: 1s;
+		}
+
+        /*            overflow:hidden;  video disappears */
+		div .slide:target {
+
+            height: 650px;
+            margin-top: 0%;
+
+/*            z-index: 400;*/
+
+/*
+            transform: translateX(20px);
+            -webkit-animation: target-fade 3s 1;
+            -moz-animation: target-fade 3s 1;
+*/
+		}
+
+        :target {
+            -webkit-animation: target-fade 3s 1;
+            -moz-animation: target-fade 3s 1;
+        }
+
+        @-webkit-keyframes target-fade {
+            0% {
+                background-color: rgba(0,0,0,0);
+                transform: rotateY(0deg);
+
+/*                -webkit-transform: scale(0.5,0.5);*/
+                -webkit-transform: rotateY(0deg);
+
+
+            }
+            100% {
+                background-color: rgba(0,0,0,0.5);
+                transform: rotateY(360deg);
+
+/*                -webkit-transform: scale(1,1);*/
+                -webkit-transform: rotateY(360deg);
+
+
+            }
+        }
+        @-moz-keyframes target-fade {
+            0% {
+                background-color: rgba(0,0,0,.1);
+                -moz-transform: rotateY(0deg);
+            }
+            100% {
+                background-color: rgba(0,0,0,0);
+                -moz-transform: rotateY(360deg);
+            }
+        }
+
+/*		*:first-child+html div.slide { position:relative; }*/
+
+        /*ie7*/
+/*		* html div.slide { position:relative; }*/
+
+        /*ie6*/
+
+        .roundcorners-top
+        {
+/*
+            -moz-border-radius: 12px 12px 0 0;
+            -webkit-border-radius: 12px 12px 0 0;
+            border-radius: 12px 12px 0 0;
+*/
+        }
+
+        .roundcorners-top-internal
+        {
+/*
+            -moz-border-radius: 8px 8px 0 0;
+            -webkit-border-radius: 8px 8px 0 0;
+            border-radius: 8px 8px 0 0;
+*/
+        }
+        .roundcorners-bottom
+        {
+/*
+            -moz-border-radius: 0 0 4px 4px;
+            -webkit-border-radius: 0 0 4px 4px;
+            border-radius: 0 0 4px 4px;
+*/
+        }
+
+		body div .content_container {
+
+            border: 2px solid red;
+            z-index: 399;
+/*            width: 900px;*/
+
+		}
+
+/*		*:first-child+html div.content_container { position:absolute;top:50%; }*/
+
+        /*ie7*/
+
+/*		* html div.content_container { position:absolute;top:50%; }*/
+
+        /*ie6*/
+
+
+		body div .content{
+
+/*            width: 100%;*/
+            width: inherit;
+            height: 650px;
+
+            display:block;
+
+/*            display:table-cell;*/
+
+/*			position:relative;*/
+			/*top:-50%;*/
+
+			border: 4px dashed #919;
+/*            background-color: rgba(1,2,3,0.0);*/
+
+            padding: 15px;
+
+			/*height: 660px; */
+/*			height:100%;*/
+
+            z-index: 400;
+            margin-top: 0em;
+            margin-bottom: 0em;
+            padding: 1em;
+
+            border-radius: 10%/40% 40%/10%;
+
+		}
+
+
+/*		*:first-child+html div.content{position:relative;top:-50%;}*/
+
+        /*ie7*/
+/*		* html div.content{position:relative;top:-50%;}*/
+
+        /*ie6*/
+
+
+
+		img {
+/*			display: block;*/
+			margin: 0 auto;
+			/*padding: 0px;*/
+			padding: 3px;
+		}
+
+        table {
+/*            vertical-align: top;*/
+            border: none;
+            overflow:hidden;
+        }
+
+        video {
+/*            z-index: 401;*/
+            margin: 0px auto;
+            padding: 0px;
+            border: 4px solid #0B2AF7;
+            background-color: #0B2AF7;
+
+            position: relative;
+/*	        top: 40%;*/
+
+/*            bottom: 50%;*/
+/*            transform: translateY(-50%);*/
+/*            z-index: 10003;*/
+            display:table-cell;
+/*            z-index: 2;*/
+/*            background-image: url(images/video-poster.png);*/
+/*            display: block;*/
+/*            vertical-align: middle;*/
+/*            -webkit-transform:translateX(0px);*/
+/*
+            display: box;
+            box-align: center;
+
+
+*/
+        }
+
+        .video-slide {
+/*            z-index: 1;*/
+/*            background-color: #0B2AF7 !important;*/
+            font-size: 0;
+        }
+
+        header {
+			width: 100%;
+/*            width:inherit;*/
+			display:block;
+/*            display:table-cell;*/
+			float: left;
+            background-color: rgba(0,0,0,0.1);
+            vertical-align: top;
+            z-index: 100;
+            overflow:hidden;
+
+		}
+
+
+
+
+
+		h1	{
+			/*position: absolute; */
+			/*margin-left: -70px; */
+            position: relative;
+			width: 92%;
+			padding: 6px;
+			text-align: left;
+			/*white-space: nowrap;*/
+			font: 2.9em "Helvetica Neue" , Arial, Helvetica, sans-serif;
+			text-transform: uppercase;
+			font-weight: bold;
+			color: #aaa;
+/*			border-bottom: 4px solid #0B2AF7;*/
+            margin-top: 0;
+			margin-left: 9px;
+			margin-right: 9px;
+
+			/*text-align: right;*/
+			/* CSS transforms, available in Safari/Chrome, Firefox 3.5+, Opera 10.5+ */
+			/*-webkit-transform-origin: left top; -webkit-transform: rotate(270deg) translateX(-100%);
+			-moz-transform-origin: left top;    -moz-transform: rotate(270deg) translateX(-100%);
+			-o-transform-origin: left top;      -o-transform: rotate(270deg) translateX(-100%);*/
+			 /* Internet Explorer 8 rotate */
+			/*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
+		}
+		h1 sup	{
+			vertical-align: top;
+			font-size: 3em;
+		}
+		h2 {
+			position: relative;
+			width: 94%;
+			font-size: 2.4em;
+
+			padding-left: 1px;
+			padding-bottom: 1px;
+			padding-top: 1px;
+			margin-left: 11px;
+			margin-top: 1px;
+			margin-bottom; 1px;
+		}
+        h3 {
+            font-size: 1.9em;
+            color: blue;
+        }
+/*font-size: 3em;*/
+
+		header h1 {
+            float: left;
+            width: 90%;
+/*            border-bottom: 4px solid #0B2AF7;*/
+        }
+		header h2 {float: left;}
+		header p {
+			/*width: 5%;*/
+			font-size: 16px;
+			text-align: left;
+			float: right;
+			margin-right:18px;
+/*			margin-top: 40px;*/
+            padding: 0px;
+            vertical-align: middle;
+
+		}
+
+        .tg  {
+            *border-collapse:collapse;
+            width: inherit;
+/*            top: 20px;*/
+
+/*            padding: 5px; */
+
+/*            height: inherit;*/
+            background-color: lightgray;
+            border-spacing: 0;
+            overflow: inherit;
+
+
+            /* hide standard table (collapsed) border */
+/*            border-style: hidden; */
+
+/*
+            -moz-border-radius-topleft: 12px;
+	       -webkit-border-top-left-radius: 12px;
+	       border-top-left-radius: 12px;
+            -moz-border-radius-topright: 12px;
+	       -webkit-border-top-right-radius: 12px;
+	       border-top-right-radius: 12px;
+*/
+        }
+        .tg tr {
+/*            height:inherit;*/
+/*            margin-top: -50px;*/
+
+        }
+/*        .tg tr:nth-child(odd) td { background: #eee }*/
+        .tg th:first-child {
+/*
+	       -moz-border-radius-topleft: 12px;
+	       -webkit-border-top-left-radius: 12px;
+	       border-top-left-radius: 12px;
+*/
+        }
+        .tg th:last-child {
+/*
+	       -moz-border-radius-topright: 12px;
+	       -webkit-border-top-right-radius: 12px;
+	       border-top-right-radius: 12px;
+*/
+        }
+        .tg th:only-child{
+/*
+            -moz-border-radius: 12px 12px 0 0;
+            -webkit-border-radius: 12px 12px 0 0;
+            border-radius: 12px 12px 0 0;
+*/
+        }
+        .tg th {
+            vertical-align: middle;
+/*            vertical-align:top;*/
+            border-spacing: 0;
+            height:inherit;
+            background-color: lightgray;
+            padding-top: 0px;
+/*            font-size: 0.6em;*/
+/*            margin-top: 20px;*/
+/*
+            border-top: 0px solid lightgray;
+            border-left: 0px solid lightgray;
+            border-right: 0.1px solid lightgray;
+*/
+            border-bottom: 4px solid #0B2AF7;
+        }
+        .tg th h1 {
+            font-size: 2.9em;
+        }
+        .tg th p {
+            display: table-cell;
+            vertical-align: middle;
+            height:inherit;
+/*            border: 1px solid black;*/
+            margin: 0 auto;
+            margin-right: 18px;
+        }
+        .tg-col1 {
+
+            overflow:inherit;
+        }
+        .tg-col2 {
+/*            padding-bottom: 10px;*/
+            overflow:inherit;
+/*            border: 1px solid black;*/
+        }
+
+
+		.clearleft {clear: left;}
+
+		p, ul, ol	{
+			margin: 16px 0 0 0;
+			padding: 3px;
+			font-size: 2em;
+			line-height: 99%;
+		}
+		ul {
+			color: black;
+			background-color: yellow;
+			/*list-style-type:none;*/
+			list-style-type:square !important;
+			width: 90%;
+			margin-left: 50px;
+			line-height: 135%;
+			/*list-style-type: circle;*/
+			/*list-style-type: disc;*/
+			/*list-style: square outside none;*/
+		}
+		ul li {
+			display:list-item;
+			color: #000000;
+	     	/*background-image: url(sqpurple.gif);
+	     	background-repeat: no-repeat;
+	     	background-position: 0px 9px;*/
+
+	     	padding-left: 20px;
+ 		}
+ 		ol {
+			color: black;
+			/*background-color: yellow;*/
+			/*list-style-type:none;*/
+			/*list-style-type: lower-alpha;*/
+			list-style-type:decimal;
+			width: 88%;
+			margin-left: 50px;
+			line-height: 110%;
+			/*list-style-type: circle;*/
+			/*list-style-type: disc;*/
+			/*list-style: square outside none;*/
+		}
+
+ 		ol li {
+			display:list-item;
+			color: #000000;
+	     	/*background-image: url(sqpurple.gif);
+	     	background-repeat: no-repeat;
+	     	background-position: 0px 9px;*/
+
+	     	padding-left: 20px;
+ 		}
+
+		li:before {
+	    	/*content: "•  ";
+	    	color: red; */
+		}
+        
+        ol.sch { 
+            margin-left: 0;
+            counter-reset: item;
+/*            color: red;*/
+        }
+        
+        ol.sch li {
+            color: red;
+            list-style-type: decimal;
+            list-style-position: inside;
+            display: block;
+            
+        }
+        
+        ol.sch li span {
+            color: #000000;
+        }
+        
+        
+        .sch > li:before { 
+            width: 3em;
+            content: "week " counter(item) ": ";
+            counter-increment: item;
+        }
+
+		/*div		{display: none;}*/
+		/*div:target	{display: block; overflow: hidden;}*/
+		/*div:target	{display: table; overflow: hidden;}*/
+
+        div		{display: none;}
+	    div:target	{display: block; overflow: hidden;}
+
+		p[name=page-num] {
+			color:red;
+            border-color:aqua;
+            float: right;
+/*            display:table-cell;*/
+/*            vertical-align: top;*/
+		}
+
+		section .middle {
+
+            position: relative;
+/*			line-height: 18px;*/
+/*			text-align: center;*/
+/*			display: table-column;*/
+/*			vertical-align: middle;*/
+			/*height: 580px;*/
+
+			/*height: 500px;*/
+/*			height: 100%;*/
+			/*width: 800px;*/
+/*			width: 700px;*/
+/*			display: block;*/
+/*
+			margin-top: 0.5%;
+
+*/
+/*			margin: 0 auto;*/
+			/*margin-bottom: 30%;*/
+			/*margin-left: 0px;*/
+			/*margin-right: 50px;*/
+			border: 4px dashed yellow;
+            z-index: 10;
+			/*background-color: yellow;*/
+/*            vertical-align: middle;*/
+		}
+
+        section .middle-base {
+/*			line-height: 20px;*/
+/*			text-align: center;*/
+
+			display: inline-block;
+
+/*			vertical-align: middle;*/
+			/*height: 580px;*/
+
+			/*height: 500px;*/
+
+            height:inherit;
+
+			height: 480px;
+
+			/*width: 800px;*/
+
+			width: 96%;
+
+/*			display: block;*/
+
+			margin-top: 1%;
+            text-align: left;
+
+			margin: 0px auto;
+
+			/*margin-bottom: 30%;*/
+			/*margin-left: 0px;*/
+			/*margin-right: 50px;*/
+/*			border: 0px dashed #babdb0;*/
+			/*background-color: yellow;*/
+		}
+
+        section .middle-base p {
+/*
+            display: block;
+            vertical-align: middle;
+*/
+        }
+
+        .hor-center {
+            text-align: center;
+            display: block;
+        }
+
+		div[box]{
+/*			background: rgba(255, 255, 222, 0.47);*/
+/*            position:realtive;*/
+			width: 60%;
+			margin: 4px auto;
+			line-height: 1.3;
+            text-align:justify;
+			padding: 10px;
+			border-radius: 10px;
+			border: 2px dashed #babdb6;
+			display: block;
+			font-size: 20px;
+
+            z-index: 3;
+
+		}
+        
+        div[box] div {
+            display: block;
+            border: 2px dashed white;
+            margin-left: 7px;
+            marginn-right: 7px;
+            z-index: 4;
+        }
+
+		/* http://www.htmldrive.net/items/show/973/-nice-Sticky-footer-with-CSS3 */
+
+		#stickey_footer { /* This will make your footer stay where it is */
+		 background: none repeat scroll 0 0 #1D1D1D;
+		 border: 1px solid rgba(0, 0, 0, 0.3);
+		 bottom: 0;
+		 font-family: Arial, Helvetica, sans-serif;
+		 height: 40px;
+		 left: 50%;
+		 margin: 0 auto 0 -490px;
+		 padding: 0 10px;
+		 position: fixed;
+		 text-shadow: 1px 1px 1px #000000;
+		 width: 970px;
+		}
+
+
+		/* border curves */
+		#stickey_footer {
+		 -moz-border-radius: 10px 10px 0px 0px;
+		 -webkit-border-radius: 10px 10px 0px 0px;
+		 border-radius: 10px 10px 0px 0px;
+		}
+
+		/* hover effect */
+		#stickey_footer:hover {
+		 background: none repeat scroll 0 0 #2b2a2a;
+		}
+
+		/* shadow for the footer*/
+		#stickey_footer {
+		 -moz-box-shadow:0px 0px 11px #191919;
+		 -webkit-box-shadow:0px 0px 11px #191919;
+		 box-shadow:0px 0px 11px #191919;
+		}
+
+		#footer_menu {
+         display: table;
+		 margin: 0px auto;
+		 padding: 0;
+		 width: auto;
+		}
+
+		#footer_menu li {
+		 list-style: none;
+		 float: left;
+		 font-size:12px;
+		 padding: 12px 14px 14px 14px;
+		 border-right:1px solid rgba(0, 0, 0, 0.4);
+		 background: rgba(0, 0, 0, 0.1);
+		}
+
+		#footer_menu .imgmenu {
+		 padding:5px 8px 3px 14px;
+		 float:left;
+		 background:url("images/home.png") 13px 5px no-repeat;
+		 width:36px;
+		 height:30px;
+		 border:none;
+		 border-right:1px solid rgba(0, 0, 0, 0.4);
+		 cursor:pointer;
+		}
+
+		#footer_menu li:hover {
+		 background:#202020; /* Fallback color for old browsers */
+		 background: rgba(0, 0, 0, 0.3);
+		}
+        
+        /*----*/
+        .scene3d
+        {
+            -webkit-perspective: 1000px;
+            width: 600px;
+            height: 340px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid cyan;
+            z-index: 401;
+        }
+        .object3d
+        {
+            position: absolute;
+            width: inherit;
+            height: inherit;
+            /*top: 20px;*/
+            -webkit-transform-style: preserve-3d;
+            border: 2px solid cyan;
+            z-index: 402;
+        }
+        .face3d
+        {
+            position: absolute;
+            left: 165px;
+            top: 15px;
+        }
+        
+        #im2E { top: 30px; -webkit-transform: translateZ(150px); }
+        #im2F { top: 30px; -webkit-transform: translateZ(-150px); }
+        #im30 { top: 30px; -webkit-transform: translateX(150px) rotateY(90deg);}
+        #im31 { top: 30px; -webkit-transform: translateX(-150px) rotateY(-90deg);}
+        #im32 { top: 30px; -webkit-transform: translateY(150px) rotateX(90deg);}
+        #im33 { top: 30px; -webkit-transform: translateY(-150px) rotateX(-90deg);}
+
+        :hover > #im2E { top: 30px; -webkit-transform: translateZ(250px); }
+        :hover > #im2F { top: 30px; -webkit-transform: translateZ(-250px); }
+        :hover > #im30 { top: 30px; -webkit-transform: translateX(250px) rotateY(90deg);}
+        :hover > #im31 { top: 30px; -webkit-transform: translateX(-250px) rotateY(-90deg);}
+        :hover > #im32 { top: 30px; -webkit-transform: translateY(250px) rotateX(90deg);}
+        :hover > #im33 { top: 30px; -webkit-transform: translateY(-250px) rotateX(-90deg);}
+        div#obj6
+        {
+            -webkit-animation: rotate3d7 linear infinite 14s;
+        }
+        @keyframes rotate3d7
+        {
+            from { -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+            to   { -webkit-transform: rotateX(360deg) rotateY(720deg) rotateZ(1080deg); }
+        }
+        div#obj6 img
+        {transition: 0.5s linear;}
+        /*----*/
+        
+        #logos {
+          position:absolute;  top: 0px;  left: 150px;  -webkit-perspective: 800px;
+           perspective: 800px; 
+        }
+        #cube {
+          display: block;  position: relative;  margin: 30px auto;
+          height: 200px;  width: 200px;
+          -webkit-transform-style: preserve-3d;
+          -webkit-transform: rotateX(0) rotateY(0) rotateZ(0);
+          transform-style: preserve-3d;
+          transform: rotateX(0) rotateY(0) rotateZ(0);
+
+        }
+        #front {
+          position: absolute;  height: 200px;  width: 200px;
+          -webkit-backface-visibility: visible;
+          -webkit-transform:  translateZ(100px);
+          backface-visibility: visible;
+          transform:  translateZ(100px);
+        }
+        #back {
+          position: absolute;  height: 200px;  width: 200px;
+          -webkit-backface-visibility: visible;
+          -webkit-transform:  rotateY(180deg) translateZ(100px);
+          backface-visibility: visible;
+          transform: rotateY(180deg) translateZ(100px);
+        }
+        #cube {
+          -webkit-animation: upyourscache1455287303575 5s infinite linear;
+          animation: upyourscache1455287303575 5s infinite linear;
+
+        }
+        @-webkit-keyframes upyourscache1455287303575 {
+          0% { -webkit-transform: rotateY(0) ;}
+          100% { -webkit-transform: rotateY(360deg) ;}
+        }
+        @keyframes upyourscache1455287303575 {
+          0% { transform: rotateY(0) ;}
+          100% { transform: rotateY(360deg) ;}
+        }
+
+
+		@page {
+			size: 210mm 297mm landscape;
+			margin: 0.9cm;
+			orphans:2; widows:2;
+		}
+
+		@media print {
+			html {
+				/*width: 970px;
+				height: 660px; */
+	    		background: none;
+	    		/*color: black;
+	    		font-size: small;
+	    		font-family: sans-serif, helvetica, tahoma, arial; */
+                margin: 0px auto;
+			}
+			body {
+				box-shadow: none;
+				overflow: hidden;
+
+/*
+                visibility: visible;
+				display:block;
+
+                margin: 0px auto;
+				overflow: auto;
+*/
+
+                /*min-height: 100%;
+				width: 940px; */
+			}
+			div {
+				display:block;
+			}
+			div h1, h2 {
+	    		page-break-before: always;
+	  		}
+			div.slide {
+
+                page-break-after:always;
+                page-break-inside: avoid;
+
+                /*				width: 940px;*/
+                /*				page-break-before: always;*/
+
+/*
+				display:block;
+
+                width: 94%;
+
+
+				margin: 0px auto;
+
+				page-break-inside: avoid;
+
+				border: 4px solid white;
+			 	-webkit-border-radius: 12px;
+			    -moz-border-radius: 12px;
+			    border-radius: 12px;
+
+			    filter: none!important;
+	     		-ms-filter: none!important;
+
+	       		visibility: visible;
+*/
+
+	       		/*overflow: visible !important;*/
+	     		/*width: auto;*/
+/*	     		height: auto;*/
+/*                height: 80%;*/
+
+/*                bottom: 540px;*/
+
+
+			}
+			div.slide:not(:last-of-type) {
+				page-break-after:always;
+			}
+
+            #stickey_footer {
+                display: none;
+            }
+		}
+
+
+
+	</style>
+	<!-- <link type="text/css" rel="stylesheet" href="presentation-v01-w1024.css"/> -->
+	<link href="my-prism.css" rel="stylesheet">
+<script type="text/javascript" src="my-presentation-v056.js"></script>
+<!-- <script type="text/javascript" src="jquery-1.7.1.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+<script type="text/javascript" src="touch.js"></script>
+<script type="text/javascript" src="myswipe.js"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+
+function TouchSupport() {
+	if ('ontouchstart' in window) {
+	/* browser with Touch Events support */
+	//alert("1 This browser is with Touch Events support!");
+        console.log("1 This browser is with Touch Events support!");
+	} else {
+		console.log("This browser is NOT with Touch Events support!");
+	}
+
+    if (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0)) {
+      /* browser with either Touch Events of Pointer Events
+         running on touch-capable device */
+        console.log("2 This browser is with Touch Events support!");
+    }
+}
+TouchSupport(); //
+
+    // about:config
+    // dom.w3c_touch_events.enabled pref to 2
+
+//window.addEventListener('load', getTouchEvents, false);
+
+
+function handleSwipe(dir, phase, distance) {
+
+	console.log('[TOUCH] handleSwipe ');
+
+	// check distance between start position and current
+//	var dx = mouseStartX - mouseX;
+//	var dy = mouseStartY - mouseY;
+//	var distance =  dx * dx + dy * dy;
+
+//	console.log('[myswipe] checkSwipe distance: ' + distance);
+
+	// over a certain distance, detect a swipe
+//	if (Math.abs(distance) > 150) {
+
+		// reset
+		// upIsDown = false;
+		// rightIsDown = false;
+		// downIsDown = false;
+		// leftIsDown = false;
+
+		if (dir == "up") {
+			// upIsDown = true;
+			console.log('[TOUCH] UP ');
+		}
+		if (phase == 'end' && dir == 'right') {
+			// rightIsDown = true;
+			console.log('[TOUCH] RIGHT ');
+			leftArrowPressed();
+//            rightArrowPressed();
+//            OnResizeDocument();
+		}
+		if (dir == "down") {
+			// downIsDown = true;
+			console.log('[TOUCH] DOWN ');
+		}
+		if (phase == 'end' && dir == 'left') {
+			// leftIsDown = true;
+			console.log('[TOUCH] LEFT ');
+			rightArrowPressed();
+//            leftArrowPressed();
+//            OnResizeDocument();
+		}
+
+		//showArrow();
+
+		// reset start position
+//		mouseStartX = mouseX;
+//		mouseStartY = mouseY;
+
+		//distance = 0;
+
+//	}
+
+}
+
+window.addEventListener('load', function(){
+	 var el = document.getElementById('mycanvas')
+	 ontouch(el, function(evt, dir, phase, swipetype, distance){
+//         console.log('[TOUCH] toches len: ' + evt.touches.length);
+	 	 var touchreport = ''
+//	 	 touchreport += '&lt;b&gt;Dir:&lt;/b&gt; ' + dir + '&lt;br /&gt;'
+//	 	 touchreport += '&lt;b&gt;Phase:&lt;/b&gt; ' + phase + '&lt;br /&gt;'
+//	 	 touchreport += '&lt;b&gt;Swipe Type:&lt;/b&gt; ' + swipetype + '&lt;br /&gt;'
+//	 	 touchreport += '&lt;b&gt;Distance:&lt;/b&gt; ' + distance + '&lt;br /&gt;'
+         touchreport += 'Dir: ' + dir + ' '
+	 	 touchreport += 'Phase: ' + phase + ' '
+	 	 touchreport += 'Swipe Type: ' + swipetype + ' '
+	 	 touchreport += 'Distance: ' + distance + ' '
+//	 	 el.innerHTML = touchreport
+         console.log('[TOUCH] ' + touchreport);
+         handleSwipe(dir, phase, distance);
+         distance = 0;
+	 })
+}, false)
+
+
+//window.addEventListener('load', function(){ // on page load
+//init();
+//
+//    // document.body.addEventListener('touchstart',
+// 	// 	function(e){
+// 	// 	//alert(e.changedTouches[0].pageX) // alert pageX 	coordinate of touch point
+// 	// 	// alert('TEST');
+// 	// 	// console.log('[TOUCH] test event');
+//
+// 	// 	},
+// 	// false)
+//
+//}, false);
+
+
+//
+</script>
+</head>
+<!--<body id="mycanvas" style="opacity: 1;">-->
+ <body id="mycanvas" onload="javascript:setPage(1);" style="opacity: 1;">
+
+<script src="prism.js"></script>
+
+
+<!-- ======================================================= -->
+<!--[begin] id="triangle{{each[1].key()}}"
+page1
+<img src="images/suny-korea-campus.png" width="756" class="SUNY Korea campus" alt="">
+-->
+<div class="slide">
+
+
+
+<!--<div class="content_container">
+background-image: url('suny-korea-campus.png');
+-->
+
+
+<div class="content" style="opacity: 0.9;  background-position: right bottom, left top; background-repeat: no-repeat, repeat;">
+
+<h1 id="cse1022014spring" style="text-align:center;border:none;">CSE102</h1>
+
+<section class="middle">
+
+<div box="">
+<img src="images/img_html5_html5.gif" width="90"  class="hor-center" alt="" style="z-index: -1;">
+</div>
+
+<p style="font-size: 3em;font-weight:bold;margin-top:0.0em;margin-bottom:0.4em;text-align: center;">GreenLife Hospitals Presentation</p>
+    
+<div box="" style="text-align: center; margin: 0 auto; background-color: white; opacity: 0.7; width: 85%;">
+
+<p style="font-size: 1.4em;"> 
+ Helena Zena<br />
+Bethlehem Kabede<br />
+Cogitater<br />
+
+</p>
+
+</div>
+
+
+</section>
+
+</div>
+
+<!--</div>-->
+
+</div>
+<!--[end] -->
+<!-- ======================================================= -->
+
+<!--  var el = document.getElementById("mycanvas");   -->
+
+<!-- ======================================================= -->
+
+
+<div class="slide"><!--[begin] page 2 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">2</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">Overview of our website</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<ol style="list-style-type: circle;">
+
+    <li><span>We designed this project for a hypothetical hospital, "Greenlife Hospitals"</span> </li>
+	<li><span>We have used many external libraries such as jQuery, Bootstrap, and Hanldebars to enhance our website; we used our own stylesheets (css) to implement our own style to our website.</span></li>
+	<li><span>We have recycled most of our pages and use bootstrap grid system to make our website responsive "fluid layout"</span> </li>
+ </ol>
+
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+<!-- ======================================================= -->
+
+
+<div class="slide"><!--[begin] page 2 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">2</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">...continued</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<ol style="list-style-type: circle;">
+
+    <li><span>Some of the contents of our website are hypothetical and some are taken from other website and credited.</span> </li>
+    <li><span>We used several free images from <a href="www.unsplash.com">www.unsplash.com</a> and copyrighted pictures with their respective credits</span> </li>
+    <li><span>We hope this website can be a developed to a website of an actual hospital</span> </li>
+    <li><span>You can see parts of our CSS, Javascript, and HTML code in the following slides</span> </li>
+</ol>
+
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+
+
+<div class="slide"><!--[begin] page 2 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">3</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">CSS code</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<img src="images/styles.JPG" width="756" class="hor-center" alt="" usemap="#dmap">
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+<div class="slide"><!--[begin] page 4 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">4</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">Javascript code</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<img src="images/javascript.JPG" width="756" class="hor-center" alt="" usemap="#dmap">
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+
+<div class="slide"><!--[begin] page 5 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">5</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">HTML code</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<img src="images/html.JPG" width="756" class="hor-center" alt="" usemap="#dmap">
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+
+
+
+<div class="slide"><!--[begin] page 2 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">2</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">What was fun?</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<ol style="list-style-type: circle;">
+
+    <li><span>Having your own options for design ideas</span> </li>
+	<li><span>Working with a website idea that is something you like</span></li>
+    <li><span>Being in control of your own website</span></li>
+	<li><span>Learning something new </span></li>
+	<li><span>Learning from your peers </span></li>
+	<li><span>Exercising teamwork</span></li>
+</ol>
+
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+<div class="slide"><!--[begin] page 3 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">3</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">What was not fun?</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<ol style="list-style-type: circle;">
+
+    <li><span>It took a lot of our time</span> </li>
+	<li><span>It required perseverance because of too many failed attempts</span></li>
+    <li><span>Fitting the project in our tight schedule</span></li>
+	<li><span>Coding, for some of us, was not a pleasurable experience</span></li>
+	<li><span>Working in a team was hard at first</span> </li>
+	<li><span>Learning how to use online resources and several other applications</span> </li>
+	
+</ol>
+
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+
+
+<!-- ======================================================= -->
+<div class="slide"><!--[begin] page 4 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">4</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">Most Valuable Lessons</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<ol style="list-style-type: circle;">
+
+    <li><span>Not giving up!</span> </li>
+	<li><span>Being patient!</span></li>
+    <li><span>Being very aware of plagiarism and avoiding it</span></li>
+	<li><span>A very good opportunity for applying what we learned</span></li>
+	<li><span><a href="https://sigaukecogitater.github.io/greenlife-hospitals/">Publishing our website</a> has made us achieve a complete work</span></li>
+</ol>
+
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+
+<!-- ======================================================= -->
+<div class="slide"><!--[begin] -->
+
+<!--<div class="content_container">-->
+
+<header>
+<h1 id="cse1022014spring">GreenLife Hospitals</h1><p name="page-num" style="color: #034500;">5</p><br class="clearleft">
+<h2>Where we can get from here:</h2><br class="clearleft">
+</header>
+
+<!--<div class="content video-slide">-->
+<div class="content">
+
+
+
+<!--<div class="vjs-poster">-->
+
+<!--  poster:  637x346-->
+
+<!--<video id="videoId" width="640" height="352" poster="images/video-poster.png">-->
+<video id="videoId" width="640" height="352" preload="auto" poster="images/video-poster.png" controls style="position: absolute; left:50%; top:50%; margin-left: -320px; margin-top: -176px;">
+<!--  <source src="video.mp4" type="video/mp4">-->
+<!--  <source src="aw1303c50000425900.mp4" type="video/mp4">   -->
+    <source id="webmvideo" src="videos/hospital-tech.webm" type='video/webm; codecs="vp8, vorbis"'/>
+    <source id="mp4video" src="videos/hospital-tech.mp4" type="video/mp4"/>
+    <source id="ogvvideo" src="videos/hospital-tech.ogv" type="video/ogg; codecs=theora,vorbis"/>
+    <object>
+     <embed src="videos/hospital-tech.mp4" type= "application/x-shockwave-flash" allowfullscreen="false" allowscriptaccess="always" />
+   </object>
+Your browser does not support the video tag.
+</video>
+
+<!--</div>-->
+
+
+<h4 style="text-align: center;">
+	By adding additional features, this project can be extended to a hospital website which can also be used as an electronic documentation, as the on video
+
+
+</h3>
+
+
+</div>
+
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+
+
+
+<div class="slide"><!--[begin] page 2 -->
+
+<!--<div class="content_container"> -->
+
+    <header class="header-table roundcorners-top-internal">
+<!--    <p>hi</p>-->
+    <table class="tg">
+  <tr>
+    <th class="tg-col1"><h1 id="cse1022014spring">GreenLife Hospitals</h1></th>
+    <th class="tg-col2"><p name="page-num" style="color: #034500;">5</p></th>
+  </tr>
+  <tr>
+    <td class="tg-031e"><h2 id="p2h2">Member's major roles</h2></td>
+    <td class="tg-031e"></td>
+  </tr>
+    </table>
+    </header>
+<!--
+<header>
+<h1 id="cse1022014spring">CSE102 2014 Spring</h1><p name="page-num">3</p><br class="clearleft">
+<h2 id="p2h2">How to show your CSS code</h2><br class="clearleft">
+</header>
+-->
+
+<!--<p style="color: gray;">CSS:</p>-->
+    
+<div class="content">
+
+<br class="clearleft">
+
+<ol style="list-style-type: circle;">
+
+    <li><span>Cogitater Sigauke- general code algorithm, adding new features</span> </li>
+	<li><span>Helena Zena- website design, graphics</span></li>
+    <li><span>Bethlehem Kebede-  content adding and debugging</span></li>
+
+</ol>
+
+</div>
+
+<!--</div>-->
+
+</div><!--[end] -->
+<!-- ======================================================= -->
+
+
+
+
+<div id="stickey_footer">
+
+ <!-- Begin Footer Menu -->
+
+<ul id="footer_menu">
+
+    <li><a href="#"><span>Home</span></a></li>
+    <li><a href="#">Services</a>
+    <li><button title="Previous" id="nav-prev" class="nav-prev" onclick="leftArrowPressed();OnResizeDocument();">&nbsp;&nbsp;&lt;&nbsp;&nbsp;</button>
+    <li><a href="#">Friends</a>
+    <li><button title="Next" id="nav-next" class="nav-next" onclick="rightArrowPressed();OnResizeDocument();">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</button>
+    <li><a href="#">Testimonials</a>
+    <li><a href="#"><span>Home</span></a></li>
+
+<!--
+ <li><a href="#"><span>Home</span></a></li>
+ <li><a href="#">Services</a>
+ <li><a href="#">Portfolio</a>
+ <li><a href="#">Friends</a>
+ <li><a href="#">Blog</a>
+ <li><a href="#">Testimonials</a>
+ <li><a href="#">Contact</a>
+-->
+
+ </ul>
+
+ <ul id="social_icons">
+ <!--Social Icons -->
+ <li><a href="#" ><img src='images/twitter.png' alt="" /><span>Twitter</span></a></li>
+ <li><a href="#" ><img src='images/digg.png' alt="" /><span>Digg</span></a></li>
+ <li><a href="#" ><img src='images/flickr.png' alt="" /><span>Flickr</span></a></li>
+ <li><a href="#" ><img src='images/facebook.png' alt="" /><span>Facebook</span></a></li>
+ </ul>
+
+</div>
+
+
+<!-- Keep this javascript code always at the end of body tag! -->
+<script type="text/javascript">
+
+var isChrome = !!window.chrome;
+var videocontainer = document.getElementById('videoId');
+    videocontainer.style.display = "block";
+
+if( isChrome ) {
+    //alert('Chrome');
+
+
+//    videocontainer.style.display = "none";
+
+    var videosourcemp4 = document.getElementById('mp4video');
+    var videosourcewebm = document.getElementById('webmvideo');
+    var videosourceogv = document.getElementById('ogvvideo');
+
+    // Test for support
+    if (videocontainer.canPlayType("video/ogg")) {
+            videocontainer.setAttribute("src", "aw1303c50000425900.ogv");
+           //window.alert("can play ogg");
+    }
+    else if (videocontainer.canPlayType("video/webm")) {
+           videocontainer.setAttribute("src", "aw1303c50000425900.webm");
+           //window.alert("can play webm");
+    }
+    else if (videocontainer.canPlayType("video/mp4")) {
+           videocontainer.setAttribute("src", "aw1303c50000425900.mp4");
+           //window.alert("can play mp4");
+    }
+    else {
+           window.alert("Can't play anything");
+    }
+//    videosourcemp4.src = "aw1303c50000425900.mp4";
+//    videosourcemp4.type = "video/mp4";
+//    videosourcewebm.src = "";
+//    videosourcewebm.type = "";
+//    videosourcemp4.src = "";
+//    videosourcemp4.type = "";
+//    videocontainer.load();
+
+//    videocontainer.style.display = "block";
+    videocontainer.load();
+//    videocontainer.play();
+
+    //$("#videoId").replaceWith($('<video id="videoId" width="100%" autoplay loop><source src="video.webm" type="video/webm"></video>'));
+
+//    <source id="mp4video" src="video2.mp4" type="video/mp4">
+//    <source src="aw1303c50000425900.webm" type='video/webm; codecs="vp8, vorbis"'>
+//    <source src="aw1303c50000425900.ogg" type="video/ogg; codecs=theora,vorbis">
+
+}
+
+/**
+ * Sets the value to element with the id
+ * @param {String} id
+ * @param {String} value
+ * @return void
+ */
+function setValue(id, value)
+{
+	var val = value;
+	console.log("[debug-body-end] id: " + id + " val: " + val);
+	var eid = document.getElementById(id);
+	console.log('[debug-body-end] id element: ' + eid);
+	if (eid)
+	{
+		eid.innerHTML = val;
+	}
+}
+
+// Math.max(document.documentElement["clientWidth"], document.body["scrollWidth"], document.documentElement["scrollWidth"], document.body["offsetWidth"], document.documentElement["offsetWidth"]);
+function getBodyWidth() {
+	var w = document.body.clientWidth;
+	console.log('[debug-body-end] width: ' + w);
+	return w;
+}
+//setValue("sld-width", getBodyWidth());
+function getBodyHeigth() {
+	var h = document.body.clientHeight;
+	console.log('[debug-body-end] height: ' + h);
+	return h;
+}
+console.log('[debug-body-end] width: ' + getBodyWidth());
+console.log('[debug-body-end] height: ' + getBodyHeigth());
+console.log('[debug-body-end] width: ' + document.body.offsetWidth);
+console.log('[debug-body-end] height: ' + document.body.offsetHeight);
+function showValue (id, value) {
+	var el = document.getElementById(id);
+	console.log('[debug-body-end] id el: ' + el);
+	if (el)
+	{
+		el.innerHTML = value;
+		console.log("[debug-body-end] set value to: " + el.innerHTML);
+	}
+
+}
+function setPageNumbers() {
+
+    var page_num_els = document.getElementsByName( "page-num" );
+    console.log('[debug-body-end] Page-num elements: ' + page_num_els);
+    console.log('[debug-body-end] Number of page-num elements: ' + page_num_els.length);
+
+    //var matches = [];
+
+    for( var i = 0; i < page_num_els.length; ++i ) {
+    	page_num_els[ i ].innerHTML = (i+2).toString();
+	}
+}
+setPageNumbers();
+function numOfPages() {
+
+    var elems = document.getElementsByClassName("slide");
+
+    //alert('Total number of divs: ' + elems.length);
+//    var matches = [];
+//    for ( var e = 0; e < elems.length; ++e )
+//    {
+//        //
+//        elems[e].setAttribute("id", "page"+(e+1));
+//        matches.push( elems[e] );
+//    }
+    return elems.length;
+
+//    var rematch = "^page\\d+$";
+//    var tagname = "div";
+//    var reMatch = new RegExp(rematch, "g"); // match and ignore case
+//    if ( tagname == null ) tagname = "*"; // if not tagname passed, search all
+//    var elems = document.getElementsByTagName(tagname);
+//    console.log('[debug-body-end2] Total number of divs: ' + elems.length);
+//    var matches = [];
+//    for ( var e = 0; e < elems.length; e++ )
+//    {
+//        //
+//        if ( elems[e].id.match(rematch) ) matches.push( elems[e] );
+//    }
+//    //console.log('[debug2] Number of page divs: ' + matches.);
+//    console.log('[debug-body-end2] Number of page divs: ' + matches.length);
+//    var pCounter = matches.length;
+//    return pCounter;
+}
+var allpagesnum = numOfPages();
+//var allpagesnum = pageCounter;
+console.log("[debug-body-end] num of pages: " + allpagesnum);
+var nop = document.getElementById("num");
+console.log('[debug-body-end] id: ' + nop);
+if (nop)
+{
+	document.getElementById("num").innerHTML = allpagesnum;
+}
+console.log("[debug-body-end] num of pages: " + nop.innerHTML);
+function demoFromHTML() {
+	var d = new Date().toISOString().slice(0, 19).replace(/-/g, "");
+	var filename = 'report_' + d + '.pdf';
+    var doc = new jsPDF('l', 'in', 'letter');
+    //doc.getFontList();
+    //var source = document.getElementsByTagName('body');
+    //var source = $('html').get(0);
+    //var source = document.body;
+    var source = document.getElementsByTagName('html')[0];
+    console.log('[debug-body-end] source variable: ' + source);
+    var specialElementHandlers = {
+        '#bypassme': function(element, renderer) {
+             return true;
+        }
+    };
+
+    doc.fromHTML(
+        source, // HTML string or DOM elem ref.
+        0.2,    // x coord
+        0.2,    // y coord
+        {
+             'width': 11, // max width of content on PDF
+             'elementHandlers': specialElementHandlers
+        });
+
+    //doc.output('dataurl');
+    doc.output('save', filename);
+    //doc.output('download.pdf');
+ }
+
+</script>
+
+</body>
+</html>
